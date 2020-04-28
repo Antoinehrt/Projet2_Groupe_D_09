@@ -9,8 +9,10 @@ Ordonnées = []
 for row in cursor.execute("SELECT DISTINCT(task) from user_tasks WHERE course LIKE 'LSINF1252'"):
     Abcisse.append(row[0])
 
-
-for row2 in cursor.execute("SELECT COUNT(submission) from user_tasks WHERE task "):
-    Ordonnées.append(row2[0])
-print(Abcisse)
-print(len(Ordonnées))
+for i in Abcisse:
+    select = "SELECT COUNT(submission) from user_tasks WHERE task LIKE '{}'".format(i)
+    for row2 in cursor.execute(select):
+        Ordonnées.append(row2[0])
+if len(Abcisse) == len(Ordonnées):
+    print(Abcisse)
+    print(Ordonnées)
