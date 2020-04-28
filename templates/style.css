@@ -1,0 +1,92 @@
+
+body {
+	background: linear-gradient(to top left, #222222 25%, #666666 75%); /* Dégradé de couleurs vertical */
+	width:99%;
+}
+
+h1 {
+  margin-top: 200px;
+  font-size: 30px;
+  text-align: center;
+  color:white;
+  text-decoration:underline white;
+  font-family: Rockwell,"Courier Bold", Courier,Georgia,Times,"Times New Roman", serif;
+
+}
+
+ul {
+ padding:0;
+ margin:0;
+ list-style-type:none;
+ }
+li {
+ margin-left:20px;
+ float:left; 
+ padding:75px;
+ }
+ul li a {
+ display:block;
+ float:left;   
+ width:150%;
+ background-color:black;
+ color:white;
+ text-decoration:none;
+ text-align:center;
+ padding:20px;
+ border:2px solid;
+ border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ font-style:normal;
+ font-weight:bold;
+ font-family:fantasy;
+ font-size:30px;
+ border-radius: 15px;
+ }
+ul li a:hover {
+ background-color:#333333;
+ border-color:#696969 #DCDCDC #DCDCDC #696969;
+ background: linear-gradient(to bottom, #000000 0%, #333333 100%); /* Dégradé de couleurs vertical */
+ }
+.mybutton {
+ width:150%;
+ background-color:black;
+ color:white;
+ text-decoration:none;
+ text-align:center;
+ padding:20px;
+ border:2px solid;
+ border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ font-style:normal;
+ font-weight:bold;
+ font-family:fantasy;
+ font-size:30px;
+ border-radius: 15px;
+}
+.mybutton:hover {
+	 background-color:#333333;
+ border-color:#696969 #DCDCDC #DCDCDC #696969;
+ background: linear-gradient(to bottom, #000000 0%, #333333 100%); /* Dégradé de couleurs vertical */
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+}
+.mylist {
+  display: none;
+  width:150%;
+  padding-top:2%;
+  position: absolute;
+  background-color: rgba(0,0,10,-100);
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+.mylist a {
+	padding-top:10%;
+  color: white;
+  text-decoration: none;
+  display: block;
+  width:83%
+}
+.show {display:block;}
