@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+      <title>Moyenne des cours</title>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  </head>
+  <body>
+  <ul>
+<li><a href="student_graph.html"><div id="page">Student</div></a></li>
+<li><a href="course_graph.html">Course</a></li>
+<li><a href="index.html">Index</a></li>
+<li><div class="button">
+  <button id="mybutton" class="mybutton">Dropdown</button>
+  <div id="mylist" class="mylist">
+    <a href="Lsinf1101.html">LSINF1101</a>
+    <a href="LEPL1402.html">LEPL1402</a>
+    <a href="LSINF1252.html">LSINF1252</a>
+  </div>
+</div>
+
+<script>
+// Get the button, and when the user clicks on it, execute myFunction
+document.getElementById("mybutton").onclick = function() {myFunction()};
+
+/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+function myFunction() {
+  document.getElementById("mylist").classList.toggle("show");
+}
+</script>
+	</li>
+
+</ul>
+
+<h1></h1>
+<h2> Présentation graphique du cours : 'LINFO1101-PYTHON' <h2>
+
+<div style="width: 70%">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    Chart.defaults.global.title.display = true;
+    Chart.defaults.global.title.text = "PAS DE TITRE";
+    Chart.defaults.global.elements.point.radius = 3;
+</script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['TextToDic', 'BinarySearch', 'LinkedListInit', 'Fibonacci', 'PairOrdered', 'DebtReminder', 'LinkedListEndRemove', 'Hogwarts-II', 'ZooGame', 'DestroyAllEnnemies', 'DictCreation', 'PatternExtraction-II', 'Session4_QCM', 'Coordinates', 'FileReading', 'LinkedListRemove', 'DiffCount', 'QBF04', 'Interests',
+         'LinkedListStr', '2degree', 'LinkedListInsert', 'DictKeyAccess', 'SpeedingFine', 'Exam-PlusFrequent', 'LoadSaveGame', 'Sum', 'QBF10', 'Average', 'Hello', 'SMSStore', 'Equals', 'Hogwarts-IV', 'Ticket', 'Triangle', 'LinkedList', 'Translator', '2degree2', 'DoubleLink',
+         'StudentFileReading', 'StudentConstructor', 'PairOpposite', 'Session6_QCM', 'Hogwarts-I', 'Morse', 'Exam-LoadMatrix', 'Quetelet', 'StudentInit', 'LinkedListChildren', 'QBF01', 'QBF11', 'DictCreationMax', 'Carre', 'PairSame', 'Ajoute', 'PatternExtraction-I', 'Factorial', 'Session2_QCM', 'AmazonPay',
+         'Recherche', 'QBF06', 'Session10_QCM', 'Hogwarts-III', 'Session10_2019_QCM', 'Hogwarts-V', 'QBF02', 'Exam-RainFall', 'Interval', 'RSTTable', 'Session3_QCM', 'Min', 'AmazonConstructor', 'FizzBuzz', 'REAL04', 'Session9_QCM', 'Median', 'FirstSum', 'DestroyAnEnnemy', 'PatternExtraction-III',
+         'QBF10_2019', 'GCD', 'QBF09', 'Exam-Enonce', 'QBF03', 'Count', 'REAL05', 'Session7_QCM', 'WrongIterations', 'Bath', 'Primes', 'QBF07', 'Exam-ClientListUpdate', 'MergeList', 'Polynomial', 'QBF05', 'Sort', 'GD', 'Exceptions', 'Session5_QCM',
+         'SumToComplete', 'Prime', 'Remainder', 'Session11_QCM', 'SimpleMax', 'SimpleFactorial', 'SimpleMath', 'Session1_QCM', 'REAL01', 'REAL02', 'REAL11', 'REAL10', 'REAL07', 'REAL09', 'REAL10_2019', 'REAL06', 'REAL03', 'Max', 'GUI'
+      ],
+        xAxisID: ['Date'],
+        yAxisID: ['Number of confirmed cases'],
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [19.049794426678847, 15.627376425855513, 18.590476190476192, 22.21012520413718, 19.090454772613693, 7.635694572217111, 14.293139293139292, 16.073871409028726, 8.17344589409056, 7.390300230946882, 28.32331329325317, 14.082767140210006, 56.19441635840524, 7.098694756125487, 12.012891883973044, 25.377015080603226, 24.53531598513011, 19.591029023746703, 21.55688622754491, 14.488468361916025,
+               11.67531504818384, 13.539921831379118, 33.35889570552147, 23.21882951653944, 71.90257677373809, 14.15977961432507, 18.161434977578477, 16.25, 33.76288659793814, 16.92818346409173, 11.759764804703906, 18.455254363163757, 17.244525547445257, 16.152125279642057, 17.68042861645131, 18.935978358881876, 21.308225966303272, 22.593167701863354, 12.021857923497267, 9.960552268244577,
+               17.24770642201835, 17.143892714751722, 54.173432751828805, 59.84126984126984, 19.047619047619047, 59.33147632311978, 26.406601650412604, 26.181102362204726, 25.032938076416336, 17.376681614349774, 11.85729275970619, 33.88189738625363, 30.17789072426938, 24.12488174077578, 38.507462686567166, 18.008705114254624, 27.810077519379846, 84.89141949152543, 11.534701857282503, 22.72510719390186,
+               16.371681415929203, 64.3814981949459, 13.716814159292035, 63.38472386058981, 12.242268041237113, 15.632364493322859, 73.92229909526344, 49.10514541387025, 13.15929675013319, 81.76825919824272, 47.60793465577596, 13.447684391080617, 41.08216432865731, 16.27659574468085, 82.0906432748538, 20.165745856353592, 19.343065693430656, 17.99276672694394, 22.325581395348838, 11.656441717791411,
+               21.19471568064331, 23.946360153256705, 70.30965391621129, 21.989860583016476, 32.77693474962064, 33.03249097472924, 59.53088713423131, 19.696969696969695, 20.87857847976308, 17.290480065093572, 16.488845780795344, 58.602409638554214, 12.472963229992791, 55.87301587301587, 9.60960960960961, 16.468766133195665, 19.91031390134529, 38.646288209606986, 70.9286854709952, 17.83126293995859,
+               25.8129265355279, 19.98904709748083, 73.55616616616649, 22.596333707444817, 24.45239159588735, 27.757449032932566, 90.08783188405828, 78.99280575539568, 96.7032967032967, 16.455696202531644, 76.4423076923077, 63.855421686746986, 53.250773993808046, 78.29457364341086, 98.18181818181819, 98.2843137254902, 0.0, 0.0]
+
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Total confirmed cases in the world and Belgium"
+      },
+      elements: {
+        point: {
+          radius: 5
+        }
+      }
+
+    }
+  });
+</script>
+
+  </body>
+</html>
+
+
