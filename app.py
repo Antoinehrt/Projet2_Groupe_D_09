@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from SQL import student_task_grade, student_point_for_task
+from SQL import student_task_grade, student_point_for_task, moyenne_grade_task
 
 app = Flask(__name__)
 
@@ -12,7 +12,6 @@ studentgraph1 = student_point_for_task(name_student)
 
 X = studentgraph1[0]
 y = studentgraph1[1]
-
 @app.route('/')
 def Homepage():
     return render_template('base.html')
@@ -30,17 +29,23 @@ def student_graph():
 
 @app.route('/course-LINFO1252')
 def LINFO1252_graph():
-    return render_template('course/LINFO1252.html')
+    values_course=moyenne_grade_task("LINFO1252")[0]
+    labels_course=moyenne_grade_task("LINFO1252")[1]
+    return render_template('course/LINFO1252.html',values=values_course,labels=labels_course)
 
 
 @app.route('/course-LINFO1012')
 def LINFO1012_graph():
-    return render_template('course/LINFO1012.html')
+    values_course=moyenne_grade_task("LSINF1101-PYTHON")[0]
+    labels_course=moyenne_grade_task("LSINF1101-PYTHON")[1]
+    return render_template('course/LINFO1012.html',values=values_course,labels=labels_course)
 
 
 @app.route('/course-LESPO1412')
 def LESPO1412_graph():
-    return render_template('course/LESPO1412.html')
+    values_course=moyenne_grade_task("LEPL1402")[0]
+    labels_course=moyenne_grade_task("LEPL1402")[1]
+    return render_template('course/LESPO1412.html',values=values_course,labels=labels_course)
 
 
 @app.route('/data')
@@ -50,3 +55,4 @@ def data():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
