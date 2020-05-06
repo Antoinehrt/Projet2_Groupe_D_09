@@ -1,7 +1,6 @@
 import sqlite3
 
 
-
 def course_task_submission(course):
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
@@ -146,7 +145,7 @@ def suceeded_task(
     y = 0
     select3 = "SELECT succeeded FROM user_tasks WHERE task LIKE'{}'".format(task)
     for row3 in cursor.execute(select3):
-        if row3[0] == True:
+        if row3[0] == 'true':
             x += 1
         else:
             y += 1
@@ -155,5 +154,3 @@ def suceeded_task(
     cursor.close()
 
     return result
-
-
