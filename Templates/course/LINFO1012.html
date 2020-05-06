@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Etudiant</title>
@@ -62,6 +64,9 @@
       <canvas id="myChart3"></canvas>
     </div>
   </div>
+
+  <!-- TODO: Modifier les styles des graphs pour les rendres plus lisibles/plus jolis -->
+
   <script>
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "PAS DE TITRE";
@@ -76,21 +81,29 @@
 
       // The data for our dataset
       data: {
-        labels: [
-          {% for item in labels %}
-           "{{ item }}",
-          {% endfor %}
-    ],
+        labels: [{
+            %
+            for item in labels %
+          }
+          "{{ item }}",
+          {
+            % endfor %
+          }
+        ],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: '',
           borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values %}
-           "{{ item }}",
-          {% endfor %}
-    ]
+          data: [{
+              %
+              for item in values %
+            }
+            "{{ item }}",
+            {
+              % endfor %
+            }
+          ]
         }]
       },
 
@@ -131,17 +144,22 @@
       // The data for our dataset
       data: {
         labels: [
-		'Rst','Html'],
+          'Rst', 'Html'
+        ],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: 'Rst',
           borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values2 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
+          data: [{
+              %
+              for item in values2 %
+            }
+            "{{ item }}",
+            {
+              % endfor %
+            }
+          ]
         }]
       },
 
@@ -181,21 +199,29 @@
 
       // The data for our dataset
       data: {
-        labels: [
-          {% for item in labels3 %}
-           "{{ item }}",
-          {% endfor %}
-    ],
+        labels: [{
+            %
+            for item in labels3 %
+          }
+          "{{ item }}",
+          {
+            % endfor %
+          }
+        ],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: 'My First dataset',
           borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values3 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
+          data: [{
+              %
+              for item in values3 %
+            }
+            "{{ item }}",
+            {
+              % endfor %
+            }
+          ]
         }]
       },
 

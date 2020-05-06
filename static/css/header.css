@@ -1,5 +1,5 @@
 .menu {
-  background: rgb(0,188,212);
+  background: rgb(0, 188, 212);
   background-size: cover;
   width: 100%;
   height: 66px;
@@ -13,7 +13,7 @@
 .logo {
   margin: 0;
   padding: 0;
-  color: rgb(236,240,241);
+  color: rgb(236, 240, 241);
   text-transform: uppercase;
   font-family: 'Roboto';
   font-weight: 900;
@@ -28,7 +28,7 @@
 
 .m-link {
   text-decoration: none;
-  color: rgb(236,240,241);
+  color: rgb(236, 240, 241);
   text-transform: uppercase;
   font-weight: 700;
   padding: 0;
@@ -39,7 +39,7 @@
 }
 
 .m-link:hover {
-  border-color: rgb(236,240,241);
+  border-color: rgb(236, 240, 241);
 }
 
 .m-link i {
@@ -60,12 +60,14 @@ span.m-toggle-icon, span.m-toggle-icon:before, span.m-toggle-icon:after {
   display: block;
   width: 100%;
   height: 2px;
-  background: rgb(236,240,241);
+  background: rgb(236, 240, 241);
   position: relative;
   transition: all 0.3s ease-in-out;
 }
 
-span.m-toggle-icon:before {top: 12px;}
+span.m-toggle-icon:before {
+  top: 12px;
+}
 
 span.m-toggle-icon:after {
   top: -14px;
@@ -75,26 +77,32 @@ span.m-toggle-icon:after {
   transform: translateX(0);
   top: 66px;
 }
-.m-nav-toggle.is-open span.m-toggle-icon{
+
+.m-nav-toggle.is-open span.m-toggle-icon {
   background: transparent;
 }
-.m-nav-toggle.is-open span.m-toggle-icon:before, .m-nav-toggle.is-open span.m-toggle-icon:after{
+
+.m-nav-toggle.is-open span.m-toggle-icon:before, .m-nav-toggle.is-open span.m-toggle-icon:after {
   transform-origin: center;
   transform: rotate(45deg);
   top: 0;
 }
-.m-nav-toggle.is-open span.m-toggle-icon:before{
+
+.m-nav-toggle.is-open span.m-toggle-icon:before {
   transform: rotate(-45deg);
 }
+
 @media only screen and (max-width:850px) {
   .m-right {
     position: absolute;
-    top: 0;left:0;right:0;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     height: auto;
-    background: rgb(0,188,212);
+    background: rgb(0, 188, 212);
     transform: translateY(-100%);
-    transition:all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     z-index: -1;
   }
 
@@ -113,11 +121,10 @@ span.m-toggle-icon:after {
   }
 }
 
-
 #showcase {
   height: 60vh;
   padding: 20px;
-  color:rgb(236,240,241);
+  color: rgb(236, 240, 241);
   align-items: center;
   text-align: center;
 }
@@ -133,6 +140,7 @@ span.m-toggle-icon:after {
 
 #showcase p {
   font-size: 20px;
+  padding: 10px 150px;
   background-position: center;
   background-size: cover;
   display: flex;
@@ -143,14 +151,15 @@ span.m-toggle-icon:after {
 #showcase .button {
   font-size: 18px;
   text-decoration: none;
-  color: rgb(236,240,241);
-  border: rgb(236,240,241) 1px solid;
+  color: rgb(236, 240, 241);
+  border: rgb(236, 240, 241) 1px solid;
+  left: 20px;
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 20px;
 }
 
 #showcase .button:hover {
-  background: rgb(0,188,212);
-  color: rgb(236,240,241);
+  background: rgb(0, 188, 212);
+  color: rgb(236, 240, 241);
 }
