@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>My Chart.js Chart</title>
+</head>
+<ul>
+<li><a href="student_graph.html"><div id="page">Student</div></a></li>
+<li><a href="course_graph.html">Course</a></li>
+<li><a href="index.html">Index</a></li>
+<li><div class="button">
+  <button id="mybutton" class="mybutton">Dropdown</button>
+  <div id="mylist" class="mylist">
+    <a href="Lsinf1101.html">LSINF1101</a>
+    <a href="LEPL1402.html">LEPL1402</a>
+    <a href="LSINF1252.html">LSINF1252</a>
+  </div>
+</div>
+
+<script>
+// Get the button, and when the user clicks on it, execute myFunction
+document.getElementById("mybutton").onclick = function() {myFunction()};
+
+/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+function myFunction() {
+  document.getElementById("mylist").classList.toggle("show");
+}
+</script>
+	</li>
+
+</ul>
+  <body>
+
+<h1></h1>
+<h2> Présentation graphique du cours : 'LINFO1101-PYTHON' <h2>
+
+<div style="width: 70%">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    Chart.defaults.global.title.display = true;
+    Chart.defaults.global.title.text = "PAS DE TITRE";
+    Chart.defaults.global.elements.point.radius = 3;
+</script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: [
+          {% for item in liste1 %}
+           "{{ item }}",
+          {% endfor %}
+    ],
+        xAxisID: ['Date'],
+        yAxisID: ['Number of confirmed cases'],
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [
+          {% for item in liste1 %}
+           "{{ item }}",
+          {% endfor %}
+    ]
+
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Total confirmed cases in the world and Belgium"
+      },
+      elements: {
+        point: {
+          radius: 5
+        }
+      }
+
+    }
+  });
+</script>
+
+  </body>
+</html>
+
+

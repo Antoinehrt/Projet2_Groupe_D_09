@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>My Chart.js Chart</title>
+</head>
+<ul>
+<li><a href="student_graph.html"><div id="page">Student</div></a></li>
+<li><a href="course_graph.html">Course</a></li>
+<li><a href="index.html">Index</a></li>
+<li><div class="button">
+  <button id="mybutton" class="mybutton">Dropdown</button>
+  <div id="mylist" class="mylist">
+    <a href="Lsinf1101.html">LSINF1101</a>
+    <a href="LEPL1402.html">LEPL1402</a>
+    <a href="LSINF1252.html">LSINF1252</a>
+  </div>
+</div>
+
+<script>
+// Get the button, and when the user clicks on it, execute myFunction
+document.getElementById("mybutton").onclick = function() {myFunction()};
+
+/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+function myFunction() {
+  document.getElementById("mylist").classList.toggle("show");
+}
+</script>
+	</li>
+
+</ul>
+<body>
+  <div class="container", style="width: 95%",align>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = 'white';
+
+    let massPopChart = new Chart(myChart, {
+      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['set_bit', 's5_file_copy', 'asm1', 'strsplit', 'palindrome', 'bits_spin', 'commandetest', 'linked_lists_2', 'bits_sum', 'bits_strong', 'swap2int', 'swap', 'mini-projet-string', 'main_argc', 'count_zero', 'stack_vs_heap', 's1_ctf1', 'calloc2', 'sleep_malloc', 'multi-free', 's1_tar', 'types', 'struct_cmp', 'strcpy', 's1_diff', 'insertion-sort', 'bits_rightmost', 's5_file_exists', 'index-text', 's1_ctf2', 'absolute_value', 'factorial', 'tab_find', 'printf', 'basic_linked_list', 'shell', 'bits_leftmost', 's1_pipes', 'soumission-projet-fractale', 'p3check', 's2_make_mcq', 'cmp_func', 'linked_structs', 'advanced_queue', 'order_relation_linked_list', 'types2', 'pointer_types', 's2_make', 'linked_lists_1', 'intersection', 'modem_read_bk', 'reverse', 'BST', 'Filemap', 'DoubleLL', 's1_grep', 'matrix-mult', 'bitwise-ops', 'modem_read', 'PC', 'my-sem', 'alist', 'run_redir', 's5_big_array_get_set', 's4_read_file_array_integer', 's2_make_calc', 'asm4', 'EmployeList', 'btree-access', 'bookstore', 'poly', 'simple_stack', 'gcd', 's4_file_save_struct', 'rpn-calc', 'asm3', 'Vectorfile', 'asm2', 'Search_and_replace', 'fork', 'hexadecimal', 'soumission-projet-cracker', '"true""false"', 'my_strlen', 'array_mmap', 'BST-Insert_Delete', 'static_counter', 'tri', 'dames', 's3_make', 's3_make_mcq', 's3_cunit_basics', 's3_make_tests', 'malloc'],
+        datasets:[{
+          label:'Task',
+          data:[
+              116, 130, 153, 81, 125, 111, 101, 0, 117, 123, 119, 117, 121, 147, 71, 67, 172, 77, 64, 88, 168, 66, 88, 76, 174, 14, 122, 113, 2, 158, 179, 614, 171, 159, 89, 45, 122, 169, 0, 20, 79, 95, 130, 119, 124, 0, 82, 84, 0, 74, 0, 128, 90, 0, 101, 173, 11, 8, 95, 105, 1, 101, 99, 120, 121, 99, 48, 79, 3, 1, 4, 109, 322, 124, 1, 136, 85, 143, 109, 129, 5, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0
+              ],
+          borderWidth:1,
+          borderColor:'white',
+          hoverBorderWidth:3,
+          hoverBorderColor:'white',
+		  
+        }]
+      },
+      options:{
+        legend:{
+          display:true,
+          position:'right',
+          labels:{
+            fontColor:'white',
+          }
+        },
+        layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -17,9 +17,10 @@ def course_task_submission(course):
         select2 = "SELECT COUNT(submission) from user_tasks WHERE task LIKE '{}'".format(i)
         for row2 in cursor.execute(select2):
             ordinate.append(row2[0])
+    cursor.close()
 
     return abscissa, ordinate
-    cursor.close()
+
 
 def student_task_grade(student):
     conn = sqlite3.connect('SQL\inginious.sqlite')
@@ -36,9 +37,10 @@ def student_task_grade(student):
             y += 1
     result.append(x)
     result.append(y)
+    cursor.close()
 
     return result
-    cursor.close()
+
 
 def moyenne_grade_task(x):  # Bastien
     conn = sqlite3.connect('SQL\inginious.sqlite')
@@ -65,8 +67,9 @@ def moyenne_grade_task(x):  # Bastien
         liste_task.append(y[0])
     del liste
     if len(liste_moyenne) == len(liste_task):
+        cursor.close()
         return liste_moyenne, liste_task
-    cursor.close()
+
 
 def rst_or_html(
         course):  # graphique circulaire qui permet de voir si les cours en question a des soumissions html ou rst
@@ -84,9 +87,10 @@ def rst_or_html(
             y += 1
     result.append(x)
     result.append(y)
+    cursor.close()
 
     return result
-    cursor.close()
+
 
 def student_point_for_task(
         student):  # graphique qui montre les points d'un etudiant pour chaque task (le cours etant implicite)
@@ -105,9 +109,10 @@ def student_point_for_task(
         select2 = "SELECT MAX(grade) from user_tasks WHERE task LIKE '{}' AND username LIKE '{}'".format(i, student)
         for row2 in cursor.execute(select2):
             point.append(row2[0])
+    cursor.close()
 
     return task, point
-    cursor.close()
+
 
 def student_tries_for_task(
         student):  # graphique qui montre le nombre de tentative d'un etudiant pour chaque task (le cours etant implicite)
@@ -126,9 +131,10 @@ def student_tries_for_task(
         select2 = "SELECT tried from user_tasks WHERE task LIKE '{}' AND username LIKE '{}'".format(i, student)
         for row2 in cursor.execute(select2):
             tries.append(row2[0])
+    cursor.close()
 
     return task, tries
-    cursor.close()
+
 
 def suceeded_task(
         task):  # graphique circulaire qui permet de voir le pourcentage de bonnes reponses sur le cours en question
@@ -140,12 +146,14 @@ def suceeded_task(
     y = 0
     select3 = "SELECT succeeded FROM user_tasks WHERE task LIKE'{}'".format(task)
     for row3 in cursor.execute(select3):
-        if row3[0] == 'true':
+        if row3[0] == True:
             x += 1
         else:
             y += 1
     result.append(x)
     result.append(y)
+    cursor.close()
 
     return result
-    cursor.close()
+
+
