@@ -23,6 +23,7 @@
           <a href="/" class="m-link"><i class="fas fa-home"></i>Acceuil</a>
           <a href="/course" class="m-link"><i class="fas fa-journal-whills"></i>Cours</a>
           <a href="/student-graph" class="m-link"><i class="fas fa-user-graduate"></i>Etudiant</a>
+          <a href="/tasks-graph" class="m-link"><i class="fas fa-tasks"></i>Tâche</a>
           <div class="m-nav-toggle">
             <span class="m-toggle-icon"></span>
           </div>
@@ -90,16 +91,8 @@
         data: {
           labels: ['succeed task', 'other_task'],
           datasets: [{
-            label: [
-          {% for item in labels %}
-           "{{ item }}",
-          {% endfor %}
-    ],
-            data: [
-          {% for item in values %}
-           "{{ item }}",
-          {% endfor %}
-    ],
+            label: 'Population',
+            data: results.results,
             backgroundColor: [
               'rgb(0, 125, 245)',
               'rgb(255, 50, 132)',
