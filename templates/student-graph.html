@@ -90,8 +90,16 @@
         data: {
           labels: ['succeed task', 'other_task'],
           datasets: [{
-            label: 'Population',
-            data: results.results,
+            label: [
+          {% for item in labels %}
+           "{{ item }}",
+          {% endfor %}
+    ],
+            data: [
+          {% for item in values %}
+           "{{ item }}",
+          {% endfor %}
+    ],
             backgroundColor: [
               'rgb(0, 125, 245)',
               'rgb(255, 50, 132)',
