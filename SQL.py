@@ -1,11 +1,11 @@
 import sqlite3
 
-conn = sqlite3.connect('SQL\inginious.sqlite')
-
-cursor = conn.cursor()
 
 
 def course_task_submission(course):
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     abscissa = []
     ordinate = []
     select = "SELECT DISTINCT(task) from user_tasks WHERE course LIKE '{}'".format(course)
@@ -19,9 +19,12 @@ def course_task_submission(course):
             ordinate.append(row2[0])
 
     return abscissa, ordinate
-
+    cursor.close()
 
 def student_task_grade(student):
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     result = []
     x = 0
     y = 0
@@ -35,9 +38,12 @@ def student_task_grade(student):
     result.append(y)
 
     return result
-
+    cursor.close()
 
 def moyenne_grade_task(x):  # Bastien
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     liste = []
     liste_task = []
     liste_moyenne = []
@@ -60,10 +66,13 @@ def moyenne_grade_task(x):  # Bastien
     del liste
     if len(liste_moyenne) == len(liste_task):
         return liste_moyenne, liste_task
-
+    cursor.close()
 
 def rst_or_html(
         course):  # graphique circulaire qui permet de voir si les cours en question a des soumissions html ou rst
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     result = []
     x = 0
     y = 0
@@ -77,10 +86,13 @@ def rst_or_html(
     result.append(y)
 
     return result
-
+    cursor.close()
 
 def student_point_for_task(
         student):  # graphique qui montre les points d'un etudiant pour chaque task (le cours etant implicite)
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     task = []
     point = []
 
@@ -95,10 +107,13 @@ def student_point_for_task(
             point.append(row2[0])
 
     return task, point
-
+    cursor.close()
 
 def student_tries_for_task(
         student):  # graphique qui montre le nombre de tentative d'un etudiant pour chaque task (le cours etant implicite)
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     task = []
     tries = []
 
@@ -113,10 +128,13 @@ def student_tries_for_task(
             tries.append(row2[0])
 
     return task, tries
-
+    cursor.close()
 
 def suceeded_task(
         task):  # graphique circulaire qui permet de voir le pourcentage de bonnes reponses sur le cours en question
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
     result = []
     x = 0
     y = 0
@@ -130,3 +148,4 @@ def suceeded_task(
     result.append(y)
 
     return result
+    cursor.close()
