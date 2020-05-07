@@ -81,29 +81,21 @@
 
       // The data for our dataset
       data: {
-        labels: [{
-            %
-            for item in labels %
-          }
-          "{{ item }}",
-          {
-            % endfor %
-          }
-        ],
+        labels: [
+          {% for item in labels %}
+           "{{ item }}",
+          {% endfor %}
+    ],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: '',
           borderColor: 'rgb(0,188,212)',
-          data: [{
-              %
-              for item in values %
-            }
-            "{{ item }}",
-            {
-              % endfor %
-            }
-          ]
+          data: [
+          {% for item in values %}
+           "{{ item }}",
+          {% endfor %}
+    ]
         }]
       },
 
@@ -144,22 +136,17 @@
       // The data for our dataset
       data: {
         labels: [
-          'Rst', 'Html'
-        ],
+		'Rst','Html'],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: 'Rst',
           borderColor: 'rgb(0,188,212)',
-          data: [{
-              %
-              for item in values2 %
-            }
-            "{{ item }}",
-            {
-              % endfor %
-            }
-          ]
+          data: [
+          {% for item in values2 %}
+           "{{ item }}",
+          {% endfor %}
+    ]
         }]
       },
 
@@ -199,29 +186,21 @@
 
       // The data for our dataset
       data: {
-        labels: [{
-            %
-            for item in labels3 %
-          }
-          "{{ item }}",
-          {
-            % endfor %
-          }
-        ],
+        labels: [
+          {% for item in labels3 %}
+           "{{ item }}",
+          {% endfor %}
+    ],
         xAxisID: ['Date'],
         yAxisID: ['Number of confirmed cases'],
         datasets: [{
           label: 'My First dataset',
           borderColor: 'rgb(0,188,212)',
-          data: [{
-              %
-              for item in values3 %
-            }
-            "{{ item }}",
-            {
-              % endfor %
-            }
-          ]
+          data: [
+          {% for item in values3 %}
+           "{{ item }}",
+          {% endfor %}
+    ]
         }]
       },
 
@@ -229,6 +208,57 @@
       options: {
         title: {
           text: "Moyenne des résultats par tâches.",
+          fontColor: 'rgb(0,188,212)',
+          fontSize: 20
+        },
+        elements: {
+          point: {
+            radius: 5
+          }
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: 'rgb(0,188,212)'
+          }
+        }
+      }
+    });
+  </script>
+
+  <script>
+    var ctx = document.getElementById('myChart4').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'pie',
+
+      // The data for our dataset
+      data: {
+        labels: ['Succeed','Failed'],
+        xAxisID: ['Date'],
+        yAxisID: ['Number of confirmed cases'],
+        datasets: [{
+          label: '',
+          borderColor: 'rgb(0,188,212)',
+          data: [
+          {% for item in values4 %}
+           "{{ item }}",
+          {% endfor %}
+    ]
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "pourcentage de réussite pour cours en question",
           fontColor: 'rgb(0,188,212)',
           fontSize: 20
         },

@@ -12,7 +12,6 @@ studentgraph1 = student_point_for_task(name_student)
 
 X = studentgraph1[0]
 y = studentgraph1[1]
-print(suceeded_task("LSINF1101-PYTHON"))
 
 
 @app.route('/')
@@ -29,6 +28,10 @@ def course_graph():
 def student_graph():
     # TODO Rajouter les inputs
     return render_template('student-graph.html', name=name_student)
+
+@app.route('/en-savoir-plus')
+def en_savoir_plus():
+    return render_template('en-savoir-plus.html')
 
 
 @app.route('/course-LINFO1252')
@@ -49,7 +52,6 @@ def LINFO1012_graph():
     values2_course = rst_or_html("LEPL1402")
     values3_course = moyenne_grade_task("LEPL1402")[0]
     labels3_course = moyenne_grade_task("LEPL1402")[1]
-    values4_course = suceeded_task("LEPL1402")
     return render_template('course/LINFO1012.html', values3=values3_course, labels3=labels3_course,
                            values=values_course, labels=labels_course, values2=values2_course)
 
@@ -72,9 +74,6 @@ def tasks():
     return render_template('tasks.html', values4=values4_course)
 
 
-@app.route('/data')
-def data():
-    return jsonify({'results': sql}, {'X': X})
 
 
 if __name__ == '__main__':
