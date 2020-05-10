@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card grey darken-3">
+    <div class="container card-content white-text">
+        <span class="card-title center"><h2>Welcome to us !</h2></span>
+        <h4>Inginious's Charts is a website to visualize charts concerning
+            the tasks proposed by the
+            <a class="grey-text" href="https://inginious.info.ucl.ac.be/courselist">Inginious</a>'s website.
+            The project is carried out as part of LINFO1002 at UCLouvain.
+            All the data used respects the anonymity's law.
+        </h4>
+        <canvas id="pacman"></canvas>
+        <canvas id="chart"></canvas>
+        <div class="card-action align-center">
+            <a class="grey-text" href="#">Authors: </a>
+            <a class="grey-text" href="#">Raphaël Wats</a>
+            <a class="grey-text" href="#">Hugo Vervier</a>
+        </div>
+    </div>
+</div>
+<script>
+    // Premier graph home page
+    let ctx = document.getElementById('pacman').getContext('2d');
+    let myDoughnutChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Valided submissions', 'Failed submissions'],
+            datasets: [
+                {
+                    data: [{{valided_all}}, {{failed_all}}],
+                    backgroundColor: ['black', 'yellow']
+                }],
+        },
+        options: {
+            rotation: -0.8,
+            animation: {
+                animateScale: true
+            },
+            title: {
+                display: true,
+                text: 'Comparison of the number of valided and failed submissions in all the courses'
+            }
+        }
+    });
+
+    // Second graph home page
+    let chart = document.getElementById('chart').getContext('2d');
+    let myChart = new Chart(chart, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['LEPL1402', 'LSINF1101', 'LSINF1252'],
+            datasets: [{
+                label: 'Valided submissions',
+                backgroundColor: 'green',
+                data: [{{ valided_lepl1402 }}, {{ valided_lsinf1101 }}, {{ valided_lsinf1252 }}],
+            }, {
+                label: 'Failed submissions',
+                backgroundColor: 'red',
+                data: [{{ failed_lepl1402 }}, {{ failed_lsinf1101 }}, {{ failed_lsinf1252 }}],
+
+            }],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Comparison of the number of submissions in the different courses'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        suggestedMin: 0
+                    },
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}
