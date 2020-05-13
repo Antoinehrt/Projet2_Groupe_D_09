@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+      <title>Moyenne des cours</title>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  </head>
+
+<h2> Voici le graphique des moyennes pour le cours : {{task}} <h2>
+
+<div style="width: 70%">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    Chart.defaults.global.title.display = true;
+    Chart.defaults.global.title.text = "PAS DE TITRE";
+    Chart.defaults.global.elements.point.radius = 3;
+</script>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: {{lt}},                      // {{variable du return pour que ca fonctionne}} 
+        xAxisID: ['Date'],
+        yAxisID: ['Number of confirmed cases'],
+        datasets: [{
+            label: 'My First dataset',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{lm}}
+
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Total confirmed cases in the world and Belgium"
+      },
+      elements: {
+        point: {
+          radius: 5
+        }
+      }
+
+    }
+  });
+</script>
+
+  </body>
+</html>
