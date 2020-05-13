@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cours-selection</title>
+  <script src="https://kit.fontawesome.com/4c183a222d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <header role="header">
+    <nav class="menu" role="navigation">
+      <div class="inner">
+        <div class="m-left">
+          <h1 class="logo">Inginious statistics</h1>
+        </div>
+        <div class="m-right">
+          <a href="/" class="m-link"><i class="fas fa-home"></i>Acceuil</a>
+          <a href="/course" class="m-link"><i class="fas fa-journal-whills"></i>Cours</a>
+          <a href="/student-graph" class="m-link"><i class="fas fa-user-graduate"></i>Etudiant</a>
+          <a href="/tasks-graph" class="m-link"><i class="fas fa-tasks"></i>Tâche</a>
+        </div>
+        <div class="m-nav-toggle">
+          <span class="m-toggle-icon"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <script src="{{ url_for('static', filename='js/app.js') }}" charset="utf-8"></script>
+  <!-- TODO: faire en sorte que le bouton reste allumé quand on est dans la page -->
+  <header id="showcase">
+    <h1>cours</h1>
+    <p>Choisissez votre cours.</p>
+    <a href="/course-LINFO1252" class="button"> LINFO1252</a>
+    <a href="/course-LINFO1012" class="button"> LINFO1012</a>
+    <a href="/course-LESPO1412" class="button"> LEPL1402</a>
+  </header>
+</body>
+
+
+</html>
