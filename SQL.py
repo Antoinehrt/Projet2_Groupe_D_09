@@ -1,14 +1,7 @@
 import sqlite3
 
 
-# Fichier contenant des fonctions permettant d'extraites les données nécessaire à la créations de nos graphs
-
 def course_task_submission(course):
-    """
-    :graph type: line
-    :param course: Le nom d'un cours compris dans la db
-    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (nombre de soumission)
-    """
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -29,11 +22,6 @@ def course_task_submission(course):
 
 
 def student_task_grade(student):
-    """
-    :graph type: pie
-    :param student: nom d'un étudiant compris dans la db
-    :return: une liste result (nombre de personne ayant réussie ayant 100%, n'ayant pas encore réussi)
-    """
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -53,19 +41,14 @@ def student_task_grade(student):
     return result
 
 
-def moyenne_grade_task(course):
-    """
-    :graph type: line
-    :param course: nom d'un cours compris dans la db
-    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (moyenne des notes)
-    """
+def moyenne_grade_task(x):  # Bastien
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
     liste = []
-    abscisse = []
-    ordonnée = []
-    select = "SELECT task, grade from submissions WHERE course LIKE '{}'".format(course)
+    liste_task = []
+    liste_moyenne = []
+    select = "SELECT task, grade from submissions WHERE course LIKE '{}'".format(x)
     for row in cursor.execute(select):
 
         if row[0] not in (i[0] for i in liste):
@@ -79,21 +62,16 @@ def moyenne_grade_task(course):
                     liste[count][2] = float(liste[count][2]) + 1.0
 
     for y in liste:
-        ordonnée.append(y[1] / y[2])
-        abscisse.append(y[0])
+        liste_moyenne.append(y[1] / y[2])
+        liste_task.append(y[0])
     del liste
-    if len(ordonnée) == len(abscisse):
+    if len(liste_moyenne) == len(liste_task):
         cursor.close()
-        return ordonnée, abscisse
-    cursor.close()
+        return liste_moyenne, liste_task
 
 
-def rst_or_html(course):
-    """
-    :graph type: pie
-    :param course: nom d'un cours compris dans la db
-    :return: une liste result (nombre de soumissions en rst ou html)
-    """
+def rst_or_html(
+        course):  # graphique circulaire qui permet de voir si les cours en question a des soumissions html ou rst
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -113,12 +91,8 @@ def rst_or_html(course):
     return result
 
 
-def student_point_for_task(student):
-    """
-    :graph type: line
-    :param student: nom d'un étudiant compris dans la db
-    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (note de l'étudiant)
-    """
+def student_point_for_task(
+        student):  # graphique qui montre les points d'un etudiant pour chaque task (le cours etant implicite)
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -139,12 +113,8 @@ def student_point_for_task(student):
     return task, point
 
 
-def student_tries_for_task(student):
-    """
-    :graph type: line
-    :param student: nom d'un étudiant compris dans la db
-    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (nombre d'essais de l'étudiant)
-    """
+def student_tries_for_task(
+        student):  # graphique qui montre le nombre de tentative d'un etudiant pour chaque task (le cours etant implicite)
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -165,12 +135,8 @@ def student_tries_for_task(student):
     return task, tries
 
 
-def suceeded_task(task):
-    """
-    :graph type: pie
-    :param task: nom d'un task compris dans la db
-    :return: une liste result (nombre de bonne et de mauvaise réponse)
-    """
+def suceeded_task(
+        task):  # graphique circulaire qui permet de voir le pourcentage de bonnes reponses sur le cours en question
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
