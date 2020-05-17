@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 from SQL import student_task_grade, student_point_for_task, moyenne_grade_task, course_task_submission, rst_or_html, \
     suceeded_task, student_task
 
@@ -105,9 +105,9 @@ def tasks():
         req = request.form
         task = req.get('name')
         value = suceeded_task(task)
-        value2= student_task(task)[0]
-        label2=student_task(task)[1]
-        return render_template('tasks.html', values=value, values2=value2,labels2=label2)
+        value2 = student_task(task)[0]
+        label2 = student_task(task)[1]
+        return render_template('tasks.html', values=value, values2=value2, labels2=label2)
 
     return render_template('input/tasks-input.html')
 

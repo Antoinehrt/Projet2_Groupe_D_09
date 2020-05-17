@@ -191,6 +191,11 @@ def suceeded_task(task):
 
 
 def student_task(task):
+    """
+    :graph type: bar
+    :param task: nom d'un task compris dans la db
+    :return: une liste value (nombre d'étudiant par point) et d'ordonnée (note de la tâche)
+    """
     conn = sqlite3.connect('SQL\inginious.sqlite')
 
     cursor = conn.cursor()
@@ -210,8 +215,6 @@ def student_task(task):
                         label.insert(count, row[0])
                         value.insert(count, 1)
                         break
-
-
         else:
             for x in label:
                 count += 1
@@ -221,3 +224,5 @@ def student_task(task):
 
     cursor.close()
     return value, label
+
+
