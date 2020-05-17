@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Etudiant</title>
+  <script src="https://kit.fontawesome.com/4c183a222d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+  <header role="header">
+    <nav class="menu" role="navigation">
+      <div class="inner">
+        <div class="m-left">
+          <h1 class="logo">Inginious statistics</h1>
+        </div>
+        <div class="m-right">
+          <a href="/" class="m-link"><i class="fas fa-home"></i>Acceuil</a>
+          <a href="/course" class="m-link"><i class="fas fa-journal-whills"></i>Cours</a>
+          <a href="/student-graph" class="m-link"><i class="fas fa-user-graduate"></i>Etudiant</a>
+          <a href="/tasks-graph" class="m-link"><i class="fas fa-tasks"></i>Tâche</a>
+          <div class="m-nav-toggle">
+            <span class="m-toggle-icon"></span>
+          </div>
+        </div>
+    </nav>
+  </header>
+  <script src="{{ url_for('static', filename='js/app.js') }}" charset="utf-8"></script>
+  <div class="align">
+    <h1>Choix de l'étudiant et/ou de la tâche</h1>
+    <br>
+    <form class="form" method="POST">
+      <input type="text" name="name" autocomplete="off" required />
+      <label for="name" class="label-name">
+        <span class="content-name">Nom</span>
+      </label>
+    </form>
+  </div>
+</body>
+
+</html>

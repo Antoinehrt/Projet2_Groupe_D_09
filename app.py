@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from SQL import student_task_grade, student_point_for_task, moyenne_grade_task, course_task_submission, rst_or_html, \
     suceeded_task
 
@@ -23,14 +23,22 @@ def course_graph():
     return render_template('course-selection.html')
 
 
-@app.route('/student-graph')
+@app.route('/student-graph', methods=['GET', 'POST'])
 def student_graph():
     """
     pre: input venu du code html
     :return: page des graphiques sur les données par étudiants
     """
-    # TODO Rajouter les inputs
-    return render_template('student-graph.html', name=name_student)
+
+    if request.method == 'POST':
+        req = request.form
+        name = req.get('name')
+        value = student_task_grade(name)
+        tasks = student_point_for_task(name)[0]
+        point = student_point_for_task(name)[1]
+        return render_template('student-graph.html', values=value, abscisse=tasks, ordonnée=point)
+
+    return render_template('input/student-input.html')
 
 
 @app.route('/en-savoir-plus')
@@ -87,14 +95,19 @@ def LESPO1412_graph():
                            values=values_course, labels=labels_course, values2=values2_course)
 
 
-@app.route('/tasks-graph')
+@app.route('/tasks-graph', methods=['GET', 'POST'])
 def tasks():
     """
    pre: input venant du code html
    :return: page contenant des graphs avec des informations en fonction des tasks
    """
-    values4_course = suceeded_task('BinarySearch')  # TODO Rajouter les inputs
-    return render_template('tasks.html', values4=values4_course)
+    if request.method == 'POST':
+        req = request.form
+        task = req.get('name')
+        value = suceeded_task(task)
+        return render_template('tasks.html', values=value)
+
+    return render_template('input/tasks-input.html')
 
 
 if __name__ == '__main__':
