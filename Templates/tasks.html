@@ -28,11 +28,12 @@
             <span class="m-toggle-icon"></span>
           </div>
         </div>
+      </div>
     </nav>
   </header>
   <script src="{{ url_for('static', filename='js/app.js') }}" charset="utf-8"></script>
   <div class="align">
-    <h1>Choix de l'étudiant et/ou de la tâche</h1>
+    <h1>Choix de la tâche (ex: valley)</h1>
     <br>
     <form class="form" method="POST">
       <input type="text" name="name" autocomplete="off" required />
@@ -61,6 +62,9 @@
      <canvas id="myChart2"></canvas>
    </div>
   </div>
+  <br>
+  <br>
+  <br>
   <script>
     Chart.defaults.global.defaultFontFamily = 'Lato';
     Chart.defaults.global.defaultFontSize = 18;
@@ -93,7 +97,7 @@
       // Configuration options go here
       options: {
         title: {
-          text: "Pourcentage de réussite pour cours en question",
+          text: "Pourcentage de réussite pour cette tâche",
           fontColor: 'rgb(0,188,212)',
           fontSize: 20
         },

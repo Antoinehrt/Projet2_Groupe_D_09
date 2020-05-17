@@ -34,9 +34,9 @@ def student_graph():
         req = request.form
         name = req.get('name')
         value = student_task_grade(name)
-        tasks = student_point_for_task(name)[0]
+        label = student_point_for_task(name)[0]
         point = student_point_for_task(name)[1]
-        return render_template('student-graph.html', values=value, abscisse=tasks, ordonnée=point)
+        return render_template('student-graph.html', values=value, abscisse=label, ordonnée=point)
 
     return render_template('input/student-input.html')
 

@@ -26,6 +26,7 @@
             <span class="m-toggle-icon"></span>
           </div>
         </div>
+      </div>
     </nav>
   </header>
   <script src="{{ url_for('static', filename='js/app.js') }}" charset="utf-8"></script>
@@ -56,175 +57,175 @@
     <br>
     <br>
     <br>
-    <div id="white-chart">
+  <div id="white-chart">
     <div style="width:70%">
       <canvas id="myChart3"></canvas>
     </div>
   </div>
 
-<script>
+  <script>
     Chart.defaults.global.defaultFontFamily = 'Lato';
     Chart.defaults.global.defaultFontSize = 14;
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "PAS DE TITRE";
     Chart.defaults.global.elements.point.radius = 3;
-</script>
+  </script>
 
-<script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: [
-        {% for item in labels %}
-         "{{ item }}",
-        {% endfor %}
-      ],
-      xAxisID: ["Nom d'une tâche"],
-      yAxisID: ['Nombre de soumssions pour une tâche donnée'],
-      datasets: [{
-        label: 'Nombre de soumissions',
-        borderColor: 'rgb(0,188,212)',
-        data: [
-        {% for item in values %}
-         "{{ item }}",
-        {% endfor %}
-      ],
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-        pointBackgroundColor: 'rgb(0,188,212)',
-        pointHoverRadius: 7
-
-      }]
-    },
-
-    // Configuration options go here
-    options: {
-      title: {
-        text: "Nombre de submission par tâche",
-        fontColor: 'rgb(0,188,212)',
-        fontSize: 30
-      },
-      elements: {
-        point: {
-          radius: 4
-        }
-      },
-      layout: {
-        padding: {
-          left: 50,
-          right: 0,
-          top: 0,
-          bottom: 0
-        }
-      },
-      legend: {
-        labels: {
-          fontColor: 'rgb(0,188,212)'
-        }
-      }
-    }
-  });
-
-  var ctx = document.getElementById('myChart2').getContext('2d');
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'pie',
-
-    // The data for our dataset
-    data: {
-      labels: ['RST','HTML'],
-      datasets: [{
-        borderColor: 'rgb(0,188,212)',
-        data: [
-        {% for item in values2 %}
-         "{{ item }}",
-        {% endfor %}
-      ],
-      backgroundColor: ['rgb(236,240,241)','rgb(0,188,212)'],
-      hoverBorderColor: 'rgb(41,128,185)',
-      hoverBorderWidth: 4
-      }]
-    },
-
-    // Configuration options go here
-    options: {
-      title: {
-        text: "Proportion de code HTML ou rst pour ce cours",
-        fontColor: 'rgb(0,188,212)',
-        fontSize: 20
-      },
-    layout: {
-        padding: {
-          left: 50,
-          right: 0,
-          top: 0,
-          bottom: 0
-        }
-      },
-    legend: {
-      labels: {
-        fontColor: 'rgb(0,188,212)'
-        }
-      }
-    }
-  });
-
-  var ctx = document.getElementById('myChart3').getContext('2d');
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-      labels: [
-        {% for item in labels3 %}
-         "{{ item }}",
-        {% endfor %}
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [
+          {% for item in labels %}
+           "{{ item }}",
+          {% endfor %}
         ],
-      xAxisID: ['Date'],
-      yAxisID: ['Number of confirmed cases'],
-      datasets: [{
-        label: 'Moyenne des résultats',
-        borderColor: 'rgb(0,188,212)',
-        data: [
-        {% for item in values3 %}
-         "{{ item }}",
-        {% endfor %}
+        xAxisID: ["Nom d'une tâche"],
+        yAxisID: ['Nombre de soumssions pour une tâche donnée'],
+        datasets: [{
+          label: 'Nombre de soumissions',
+          borderColor: 'rgb(0,188,212)',
+          data: [
+          {% for item in values %}
+           "{{ item }}",
+          {% endfor %}
         ],
           backgroundColor: 'rgba(0, 0, 0, 0)',
           pointBackgroundColor: 'rgb(0,188,212)',
           pointHoverRadius: 7
-      }]
-    },
 
-    // Configuration options go here
-    options: {
-      title: {
-        text: "Moyenne des résultats par tâches",
-        fontColor: 'rgb(0,188,212)',
-        fontSize: 20
+        }]
       },
-      elements: {
-        point: {
-          radius: 4
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "Nombre de soumissions par tâche",
+          fontColor: 'rgb(0,188,212)',
+          fontSize: 30
+        },
+        elements: {
+          point: {
+            radius: 4
+          }
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: 'rgb(0,188,212)'
+          }
         }
+      }
+    });
+
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'pie',
+
+      // The data for our dataset
+      data: {
+        labels: ['RST','HTML'],
+        datasets: [{
+          borderColor: 'rgb(0,188,212)',
+          data: [
+          {% for item in values2 %}
+           "{{ item }}",
+          {% endfor %}
+        ],
+        backgroundColor: ['rgb(236,240,241)','rgb(0,188,212)'],
+        hoverBorderColor: 'rgb(41,128,185)',
+        hoverBorderWidth: 4
+        }]
       },
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "Proportion de code HTML ou rst pour ce cours",
+          fontColor: 'rgb(0,188,212)',
+          fontSize: 20
+        },
       layout: {
-        padding: {
-          left: 50,
-          right: 0,
-          top: 0,
-          bottom: 0
-        }
-      },
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
       legend: {
         labels: {
           fontColor: 'rgb(0,188,212)'
+          }
         }
       }
-    }
-  });
-</script>
+    });
+
+    var ctx = document.getElementById('myChart3').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
+
+      // The data for our dataset
+      data: {
+        labels: [
+          {% for item in labels3 %}
+           "{{ item }}",
+          {% endfor %}
+          ],
+        xAxisID: ['Date'],
+        yAxisID: ['Number of confirmed cases'],
+        datasets: [{
+          label: 'Moyenne des résultats',
+          borderColor: 'rgb(0,188,212)',
+          data: [
+          {% for item in values3 %}
+           "{{ item }}",
+          {% endfor %}
+          ],
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            pointBackgroundColor: 'rgb(0,188,212)',
+            pointHoverRadius: 7
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "Moyenne des résultats par tâche",
+          fontColor: 'rgb(0,188,212)',
+          fontSize: 20
+        },
+        elements: {
+          point: {
+            radius: 4
+          }
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: 'rgb(0,188,212)'
+          }
+        }
+      }
+    });
+  </script>
 
 
 

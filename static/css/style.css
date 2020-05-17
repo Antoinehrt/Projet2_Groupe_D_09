@@ -6,7 +6,7 @@ html, body {
   font-family: 'Lato';
   color: rgb(236, 240, 241);
   overflow-x: hidden;
-  background: "{{ url_for('static', filename='css/header.css') }}" no-repeat center center;
+  background: "{{ url_for('static', filename='css/header.css') }}"no-repeat center center;
   background-size: cover;
 }
 
@@ -28,6 +28,8 @@ body {
   padding: 15px;
   margin: 20px auto;
   width: 80%;
+  color: rgb(236, 240, 241);
+  text-align: center;
 }
 
 .form {
