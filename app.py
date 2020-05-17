@@ -79,7 +79,7 @@ def LINFO1012_graph():
                            values=values_course, labels=labels_course, values2=values2_course)
 
 
-@app.route('/course-LESPO1412')
+@app.route('/course-LEPL1402')
 def LESPO1412_graph():
     """
     pre: appel de fonction provenant du fichier SQL.py. Les données serve de valeur pour les graphiques.
@@ -114,4 +114,3 @@ def tasks():
 
 if __name__ == '__main__':
     app.run(debug=True)
-

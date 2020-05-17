@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Etudiant</title>
+  <title>LINFO1012</title>
   <script src="https://kit.fontawesome.com/4c183a222d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -32,260 +30,201 @@
   </header>
   <script src="{{ url_for('static', filename='js/app.js') }}" charset="utf-8"></script>
   <header id="showcase">
-    <h1>cours</h1>
-    <p>Choisissez votre cours.</p>
+    <h1>Cours</h1>
+    <p>Choisissez un cours</p>
     <a href="/course-LINFO1252" class="button"> LINFO1252</a>
     <a href="/course-LINFO1012" class="button"> LINFO1012</a>
-    <a href="/course-LESPO1412" class="button"> LEPL1402</a>
+    <a href="/course-LEPL1402" class="button"> LEPL1402</a>
   </header>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
   <div id="white-chart">
     <div style="width:70%">
       <canvas id="myChart"></canvas>
     </div>
+  </div>
     <br>
     <br>
     <br>
     <br>
     <br>
+  <div id="none-white-chart">
     <div style="width:70%">
       <canvas id="myChart2"></canvas>
     </div>
+  </div>
     <br>
     <br>
     <br>
     <br>
     <br>
+    <div id="white-chart">
     <div style="width:70%">
       <canvas id="myChart3"></canvas>
     </div>
   </div>
 
-  <!-- TODO: Modifier les styles des graphs pour les rendres plus lisibles/plus jolis -->
-
 <script>
     Chart.defaults.global.defaultFontFamily = 'Lato';
-    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontSize = 14;
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "PAS DE TITRE";
     Chart.defaults.global.elements.point.radius = 3;
-    Chart.defaults.global.defaultFontColor = 'rgba(255, 99, 132, 0.6)';
 </script>
 
-  <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        {% for item in labels %}
+         "{{ item }}",
+        {% endfor %}
+      ],
+      xAxisID: ["Nom d'une tâche"],
+      yAxisID: ['Nombre de soumssions pour une tâche donnée'],
+      datasets: [{
+        label: 'Nombre de soumissions',
+        borderColor: 'rgb(0,188,212)',
+        data: [
+        {% for item in values %}
+         "{{ item }}",
+        {% endfor %}
+      ],
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        pointBackgroundColor: 'rgb(0,188,212)',
+        pointHoverRadius: 7
 
-      // The data for our dataset
-      data: {
-        labels: [
-          {% for item in labels %}
-           "{{ item }}",
-          {% endfor %}
-    ],
-        xAxisID: ['Date'],
-        yAxisID: ['Number of confirmed cases'],
-        datasets: [{
-          label: '',
-          borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values %}
-           "{{ item }}",
-          {% endfor %}
-    ]
-        }]
+      }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Nombre de submission par tâche",
+        fontColor: 'rgb(0,188,212)',
+        fontSize: 30
       },
-
-      // Configuration options go here
-      options: {
-        title: {
-          text: "Nombre de submission par tâche",
-          fontColor: 'rgb(0,188,212)',
-          fontSize: 20
-        },
-        elements: {
-          point: {
-            radius: 5
-          }
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        },
-        legend: {
-          labels: {
-            fontColor: 'rgb(0,188,212)'
-          }
+      elements: {
+        point: {
+          radius: 4
+        }
+      },
+      layout: {
+        padding: {
+          left: 50,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+      },
+      legend: {
+        labels: {
+          fontColor: 'rgb(0,188,212)'
         }
       }
-    });
-  </script>
-  <script>
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'pie',
+    }
+  });
 
-      // The data for our dataset
-      data: {
-        labels: [
-		'Rst','Html'],
-        xAxisID: ['Date'],
-        yAxisID: ['Number of confirmed cases'],
-        datasets: [{
-          label: 'Rst',
-          borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values2 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
-        }]
+  var ctx = document.getElementById('myChart2').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+      labels: ['RST','HTML'],
+      datasets: [{
+        borderColor: 'rgb(0,188,212)',
+        data: [
+        {% for item in values2 %}
+         "{{ item }}",
+        {% endfor %}
+      ],
+      backgroundColor: ['rgb(236,240,241)','rgb(0,188,212)'],
+      hoverBorderColor: 'rgb(41,128,185)',
+      hoverBorderWidth: 4
+      }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Proportion de code HTML ou rst pour ce cours",
+        fontColor: 'rgb(0,188,212)',
+        fontSize: 20
       },
-
-      // Configuration options go here
-      options: {
-        title: {
-          text: "Proportion de code HTML ou rst pour une tâche.",
-          fontColor: 'rgb(0,188,212)',
-          fontSize: 20
-        },
-        elements: {
-          point: {
-            radius: 5
-          }
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        },
-        legend: {
-          labels: {
-            fontColor: 'rgb(0,188,212)'
-          }
+    layout: {
+        padding: {
+          left: 50,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+      },
+    legend: {
+      labels: {
+        fontColor: 'rgb(0,188,212)'
         }
       }
-    });
-  </script>
-  <script>
-    var ctx = document.getElementById('myChart3').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'line',
+    }
+  });
 
-      // The data for our dataset
-      data: {
-        labels: [
-          {% for item in labels3 %}
-           "{{ item }}",
-          {% endfor %}
-    ],
-        xAxisID: ['Date'],
-        yAxisID: ['Number of confirmed cases'],
-        datasets: [{
-          label: 'My First dataset',
-          borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values3 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
-        }]
+  var ctx = document.getElementById('myChart3').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+      labels: [
+        {% for item in labels3 %}
+         "{{ item }}",
+        {% endfor %}
+        ],
+      xAxisID: ['Nom des tasks'],
+      yAxisID: ['moyenne des résulats'],
+      datasets: [{
+        label: 'Moyenne des résultats',
+        borderColor: 'rgb(0,188,212)',
+        data: [
+        {% for item in values3 %}
+         "{{ item }}",
+        {% endfor %}
+        ],
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: 'rgb(0,188,212)',
+          pointHoverRadius: 7
+      }]
+    },
+
+    // Configuration options go here
+    options: {
+      title: {
+        text: "Moyenne des résultats par tâches",
+        fontColor: 'rgb(0,188,212)',
+        fontSize: 20
       },
-
-      // Configuration options go here
-      options: {
-        title: {
-          text: "Moyenne des résultats par tâches.",
-          fontColor: 'rgb(0,188,212)',
-          fontSize: 20
-        },
-        elements: {
-          point: {
-            radius: 5
-          }
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        },
-        legend: {
-          labels: {
-            fontColor: 'rgb(0,188,212)'
-          }
+      elements: {
+        point: {
+          radius: 4
+        }
+      },
+      layout: {
+        padding: {
+          left: 50,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+      },
+      legend: {
+        labels: {
+          fontColor: 'rgb(0,188,212)'
         }
       }
-    });
-  </script>
-
-  <script>
-    var ctx = document.getElementById('myChart4').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'pie',
-
-      // The data for our dataset
-      data: {
-        labels: ['Succeed','Failed'],
-        xAxisID: ['Date'],
-        yAxisID: ['Number of confirmed cases'],
-        datasets: [{
-          label: '',
-          borderColor: 'rgb(0,188,212)',
-          data: [
-          {% for item in values4 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
-        }]
-      },
-
-      // Configuration options go here
-      options: {
-        title: {
-          text: "pourcentage de réussite pour cours en question",
-          fontColor: 'rgb(0,188,212)',
-          fontSize: 20
-        },
-        elements: {
-          point: {
-            radius: 5
-          }
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        },
-        legend: {
-          labels: {
-            fontColor: 'rgb(0,188,212)'
-          }
-        }
-      }
-    });
-  </script>
+    }
+  });
+</script>
 
 
 

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Etudiant</title>
+  <title>Task</title>
   <script src="https://kit.fontawesome.com/4c183a222d.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -47,29 +47,29 @@
   <br>
   <br>
   <div id="white-chart">
-  <div style="width:70%">
-    <canvas id="myChart4"></canvas>
-  </div>
-  <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <div style="width:70%">
-      <canvas id="myChart3"></canvas>
+      <canvas id="myChart"></canvas>
     </div>
   </div>
-  <!-- TODO: Rajouter les inputs -->
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div id="none-white-chart">
+   <div style="width:70%">
+     <canvas id="myChart2"></canvas>
+   </div>
+  </div>
   <script>
     Chart.defaults.global.defaultFontFamily = 'Lato';
     Chart.defaults.global.defaultFontSize = 18;
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "PAS DE TITRE";
     Chart.defaults.global.elements.point.radius = 3;
-    Chart.defaults.global.defaultFontColor = 'rgba(255, 99, 132, 0.6)';
-    </script>
+  </script>
   <script>
-    var ctx = document.getElementById('myChart4').getContext('2d');
+    var ctx = document.getElementById('myChart2').getContext('2d');
     var chart = new Chart(ctx, {
       // The type of chart we want to create
       type: 'pie',
@@ -77,16 +77,16 @@
       // The data for our dataset
       data: {
         labels: ['Succeed','Failed'],
-        xAxisID: ['status of the exercices'],
-        yAxisID: ['Nombre of tasks'],
         datasets: [{
-          label: '',
           borderColor: 'rgb(0,188,212)',
           data: [
           {% for item in values %}
            "{{ item }}",
           {% endfor %}
-    ]
+          ],
+        backgroundColor: ['rgb(236,240,241)','rgb(0,188,212)'],
+        hoverBorderColor: 'rgb(41,128,185)',
+        hoverBorderWidth: 4
         }]
       },
 
@@ -97,10 +97,56 @@
           fontColor: 'rgb(0,188,212)',
           fontSize: 20
         },
-        elements: {
-          point: {
-            radius: 5
+      layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
           }
+        },
+      legend: {
+        labels: {
+          fontColor: 'rgb(0,188,212)'
+          }
+        }
+      }
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+
+      // The data for our dataset
+      data: {
+        labels: [
+          {% for item in labels2 %}
+           "{{ item }}",
+          {% endfor %}
+        ],
+        xAxisID: ['status of the exercices'],
+        yAxisID: ['Nombre of tasks'],
+        datasets: [{
+          label: "Nombre d'étudiant par points",
+          borderColor: 'rgb(0,188,212)',
+          data: [
+          {% for item in values2 %}
+           "{{ item }}",
+          {% endfor %}
+        ],
+        backgroundColor:['rgb(52,152,219)','rgb(236,240,241)','rgb(26,188,156)','rgb(46,204,113)','rgb(52,73,94)'],
+        hoverBorderColor: 'rgb(41,128,185)',
+        hoverBorderWidth: 3
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "Répartition des points",
+          fontColor: 'rgb(0,188,212)',
+          fontSize: 20
         },
         layout: {
           padding: {
@@ -117,60 +163,7 @@
         }
       }
     });
-</script>
-
-  <script>
-    var ctx = document.getElementById('myChart3').getContext('2d');
-    var chart = new Chart(ctx, {
-      // The type of chart we want to create
-      type: 'bar',
-
-      // The data for our dataset
-      data: {
-        labels: [{% for item in labels2 %}
-           "{{ item }}",
-          {% endfor %}],
-        xAxisID: ['status of the exercices'],
-        yAxisID: ['Nombre of tasks'],
-        datasets: [{
-          label: '',
-          borderColor: 'rgba(255, 99, 132, 0.6)',
-          data: [
-          {% for item in values2 %}
-           "{{ item }}",
-          {% endfor %}
-    ]
-        }]
-      },
-
-      // Configuration options go here
-      options: {
-        title: {
-          text: "Répartition des points",
-          fontColor: 'rgba(255, 99, 132, 0.6)',
-          fontSize: 20
-        },
-        elements: {
-          point: {
-            radius: 5
-          }
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            top: 0,
-            bottom: 0
-          }
-        },
-        legend: {
-          labels: {
-            fontColor: 'rgba(255, 99, 132, 0.6)'
-          }
-        }
-      }
-    });
-</script>
+  </script>
 </body>
 
 </html>

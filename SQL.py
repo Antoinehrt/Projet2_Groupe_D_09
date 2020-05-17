@@ -28,31 +28,6 @@ def course_task_submission(course):
     return abscissa, ordinate
 
 
-def student_task_grade(student):
-    """
-    :graph type: pie
-    :param student: nom d'un étudiant compris dans la db
-    :return: une liste result (nombre de personne ayant réussie ayant 100%, n'ayant pas encore réussi)
-    """
-    conn = sqlite3.connect('SQL\inginious.sqlite')
-
-    cursor = conn.cursor()
-    result = []
-    x = 0
-    y = 0
-    select3 = "SELECT grade from user_tasks WHERE username like '{}'".format(student)
-    for row3 in cursor.execute(select3):
-        if row3 == (100.0,):
-            x += 1
-        else:
-            y += 1
-    result.append(x)
-    result.append(y)
-    cursor.close()
-
-    return result
-
-
 def moyenne_grade_task(course):
     """
     :graph type: line
@@ -113,6 +88,57 @@ def rst_or_html(course):
     return result
 
 
+def student_tries_for_task(student):
+    """
+    :graph type: line
+    :param student: nom d'un étudiant compris dans la db
+    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (nombre d'essais de l'étudiant)
+    """
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
+    task = []
+    tries = []
+
+    select = "SELECT DISTINCT(task) from user_tasks WHERE username LIKE '{}'".format(student)
+
+    for row in cursor.execute(select):
+        task.append(row[0])
+
+    for i in task:
+        select2 = "SELECT tried from user_tasks WHERE task LIKE '{}' AND username LIKE '{}'".format(i, student)
+        for row2 in cursor.execute(select2):
+            tries.append(row2[0])
+    cursor.close()
+
+    return task, tries
+
+
+def student_task_grade(student):
+    """
+    :graph type: pie
+    :param student: nom d'un étudiant compris dans la db
+    :return: une liste result (nombre de personne ayant réussie ayant 100%, n'ayant pas encore réussi)
+    """
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
+    result = []
+    x = 0
+    y = 0
+    select3 = "SELECT grade from user_tasks WHERE username like '{}'".format(student)
+    for row3 in cursor.execute(select3):
+        if row3 == (100.0,):
+            x += 1
+        else:
+            y += 1
+    result.append(x)
+    result.append(y)
+    cursor.close()
+
+    return result
+
+
 def student_point_for_task(student):
     """
     :graph type: line
@@ -139,63 +165,6 @@ def student_point_for_task(student):
     return task, point
 
 
-def student_tries_for_task(student):
-    """
-    :graph type: line
-    :param student: nom d'un étudiant compris dans la db
-    :return: une liste d'abscisse (nom d'une task) et d'ordonnée (nombre d'essais de l'étudiant)
-    """
-    conn = sqlite3.connect('SQL\inginious.sqlite')
-
-    cursor = conn.cursor()
-    task = []
-    tries = []
-
-    select = "SELECT DISTINCT(task) from user_tasks WHERE username LIKE '{}'".format(student)
-
-    for row in cursor.execute(select):
-        task.append(row[0])
-
-    for i in task:
-        select2 = "SELECT tried from user_tasks WHERE task LIKE '{}' AND username LIKE '{}'".format(i, student)
-        for row2 in cursor.execute(select2):
-            tries.append(row2[0])
-    cursor.close()
-
-    return task, tries
-
-def student_task(task) :
-    conn = sqlite3.connect('SQL\inginious.sqlite')
-
-    cursor = conn.cursor()
-    select3 = "SELECT grade FROM user_tasks WHERE task LIKE'{}'".format(task)
-    value=[]
-    label=[]
-    for row in cursor.execute(select3):
-        count=-1
-        if row[0] not in label :
-            if label==[] :
-                label.append(row[0])
-                value.append(1)
-            else :
-                for x in label :
-                    count+=1
-                    if row[0] < x :
-                        label.insert(count,row[0])
-                        value.insert(count,1)
-                        break
-
-                    
-        else :
-            for x in label :
-                count+=1
-                if str(x) == str(row[0]) :
-                    value[count] = value[count]+1
-                    break
-                    
-    cursor.close()
-    return value,label
-
 def suceeded_task(task):
     """
     :graph type: pie
@@ -220,3 +189,35 @@ def suceeded_task(task):
 
     return result
 
+
+def student_task(task):
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
+    select3 = "SELECT grade FROM user_tasks WHERE task LIKE'{}'".format(task)
+    value = []
+    label = []
+    for row in cursor.execute(select3):
+        count = -1
+        if row[0] not in label:
+            if label == []:
+                label.append(row[0])
+                value.append(1)
+            else:
+                for x in label:
+                    count += 1
+                    if row[0] < x:
+                        label.insert(count, row[0])
+                        value.insert(count, 1)
+                        break
+
+
+        else:
+            for x in label:
+                count += 1
+                if str(x) == str(row[0]):
+                    value[count] = value[count] + 1
+                    break
+
+    cursor.close()
+    return value, label
