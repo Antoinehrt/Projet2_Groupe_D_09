@@ -50,6 +50,14 @@
   <div style="width:70%">
     <canvas id="myChart4"></canvas>
   </div>
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="width:70%">
+      <canvas id="myChart3"></canvas>
+    </div>
   </div>
   <!-- TODO: Rajouter les inputs -->
   <script>
@@ -59,7 +67,7 @@
     Chart.defaults.global.title.text = "PAS DE TITRE";
     Chart.defaults.global.elements.point.radius = 3;
     Chart.defaults.global.defaultFontColor = 'rgba(255, 99, 132, 0.6)';
-    </script>>
+    </script>
   <script>
     var ctx = document.getElementById('myChart4').getContext('2d');
     var chart = new Chart(ctx, {
@@ -109,7 +117,60 @@
         }
       }
     });
-  </script>
+</script>
+
+  <script>
+    var ctx = document.getElementById('myChart3').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+
+      // The data for our dataset
+      data: {
+        labels: [{% for item in labels2 %}
+           "{{ item }}",
+          {% endfor %}],
+        xAxisID: ['status of the exercices'],
+        yAxisID: ['Nombre of tasks'],
+        datasets: [{
+          label: '',
+          borderColor: 'rgba(255, 99, 132, 0.6)',
+          data: [
+          {% for item in values2 %}
+           "{{ item }}",
+          {% endfor %}
+    ]
+        }]
+      },
+
+      // Configuration options go here
+      options: {
+        title: {
+          text: "Répartition des points",
+          fontColor: 'rgba(255, 99, 132, 0.6)',
+          fontSize: 20
+        },
+        elements: {
+          point: {
+            radius: 5
+          }
+        },
+        layout: {
+          padding: {
+            left: 50,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: 'rgba(255, 99, 132, 0.6)'
+          }
+        }
+      }
+    });
+</script>
 </body>
 
 </html>
