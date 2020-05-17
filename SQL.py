@@ -164,6 +164,37 @@ def student_tries_for_task(student):
 
     return task, tries
 
+def student_task(task) :
+    conn = sqlite3.connect('SQL\inginious.sqlite')
+
+    cursor = conn.cursor()
+    select3 = "SELECT grade FROM user_tasks WHERE task LIKE'{}'".format(task)
+    value=[]
+    label=[]
+    for row in cursor.execute(select3):
+        count=-1
+        if row[0] not in label :
+            if label==[] :
+                label.append(row[0])
+                value.append(1)
+            else :
+                for x in label :
+                    count+=1
+                    if row[0] < x :
+                        label.insert(count,row[0])
+                        value.insert(count,1)
+                        break
+
+                    
+        else :
+            for x in label :
+                count+=1
+                if str(x) == str(row[0]) :
+                    value[count] = value[count]+1
+                    break
+                    
+    cursor.close()
+    return value,label
 
 def suceeded_task(task):
     """
@@ -188,3 +219,4 @@ def suceeded_task(task):
     cursor.close()
 
     return result
+
